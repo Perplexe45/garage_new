@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Se connecter{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row my-5 align-items-center">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4">
+            <div class="">
+                <div class="border-dark characteristic-box">
+                    <h1 class="text-center">Connexion du personnel</h1>
+                </div>
+                <br><br>
+
+                <div class="card custom-card bg-dark-subtle"> <!-- Ajout de la classe custom-card -->
+                    <div class="card-body rounded-2 card-color pb-2">
+                        <form method="post">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+
+                            {% if app.user %}
+                                <div class="mb-3" style="color:white">
+                                    You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_deconnexion') }}" style="color:yellow">Déconnexion</a>
+                                </div>
+                            {% endif %}
+                            <div class="pt-2">
+                                <h1 class="mb-4 font-weight-normal text-center bg-light">Connectez-vous</h1>
+                            </div>    
+                            <div class="py-0">
+                               <label for="inputEmail"></label>
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Votre email" autocomplete="email" required autofocus>
+                                <label for="inputPassword"></label>
+                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Votre mot de passe" autocomplete="current-password" required>
+                            </div>
+                                
+                            
+
+                            <input type="hidden" name="_csrf_token"
+                                value="{{ csrf_token('authenticate') }}"
+                            >
+                            <hr>
+                            <div class="pb-2 pt-1">
+                                <button class="btn btn-dark btn-sm" type="submit">
+                                    Se connecter
+                                </button>   
+                            </div>
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+{% endblock %}

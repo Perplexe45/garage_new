@@ -1,0 +1,21 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+traitement_temoignage:
+    path: /traitement-temoignage
+    controller: App\Controller\HomeController::traitementTemoignage
+    methods: [POST]
+
+contactClients:
+    path: /contact
+    controller: App\Controller\HomeController::contactClients
+    methods: [POST]
+
+
+
+
+
+   
