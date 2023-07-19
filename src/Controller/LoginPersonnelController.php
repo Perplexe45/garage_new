@@ -16,7 +16,7 @@ class LoginPersonnelController extends AbstractController
 {
     
     #[Route(path: '/connexion', name: 'app_connexion')]
-   
+
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // get the login error if there is one
