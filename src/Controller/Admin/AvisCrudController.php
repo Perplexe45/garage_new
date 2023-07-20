@@ -35,7 +35,7 @@ class AvisCrudController extends AbstractCrudController
                 TextField::new('nom')->setLabel('Visiteur'),
                 TextareaField::new('commentaire')->setMaxLength(500),
                 IntegerField::new('note'),
-                BooleanField::new('acceptation')->hideOnForm(), // Hide the field on the form
+                BooleanField::new('acceptation'), 
                 AssociationField::new('IDemploye')->setLabel('Pris en charge')
                 -> setRequired(false),
             ];
