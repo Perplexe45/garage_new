@@ -2,8 +2,18 @@
   --sidebar-bg: '#deebff';
 }
 
+@font-face {
+  font-family: 'Lato';
+  src: url('Public/assets/fonts/Lato-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Lato', sans-serif;
+}
+
 body {
-  font-family: 'Rajdhani', sans-serif;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -12,6 +22,8 @@ body {
   padding: 0;
   background-color: #C6AC8F;
 }
+
+
 
 main{
   flex: 1;
@@ -138,7 +150,7 @@ header {
 }
 
 .service-item:hover + .evocation-list {
-  background-color: #dae8af;
+  background-color: #EAE0D5;
   display: block;
 }
 
@@ -169,12 +181,6 @@ header {
   border-bottom-right-radius: 10px;
   background-color: #ded4d4;
   padding: 15px;
-}
-
-h1 {
-  color: #0b0b0b;
-  font-size: 28px;
-  margin: 0;
 }
 
 .cursor-pointer {
@@ -210,18 +216,8 @@ h1 {
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-.testimonial {
-  margin-bottom: 20px;
-}
-
 .w-98{
   width:100%;
-}
-
-h2 {
-  color: #333;
-  font-size: 24px;
-  margin-top: 0;
 }
 
 .yellowStars, select.yellowStars  {

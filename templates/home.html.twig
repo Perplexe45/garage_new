@@ -7,7 +7,7 @@
 {% block presentation %}
 	<header>
 		<div class="">
-			<h1 class="display-4 bg-light">Bienvenue cher client</h1>
+			<h1 class="display-4 bg-light"><strong>Bienvenue cher client</strong></h1>
 		</div>
 	</header>
 
@@ -46,7 +46,7 @@
 	<!-- Caroussel -->
 	<div class="container bg-light">
 		<div class="col-md-7 col-lg-7 m-auto">
-			<h6 class="text-center display-5 pt-5">Quelques belles voitures qui sont passées dans notre garage</h6>
+			<h2 class="text-center pt-5 pb-3 ">Quelques belles voitures qui sont passées dans notre garage</h2>
 			<!-- Carousel -->
 			<div
 				class="carousel slide" data-bs-ride="carousel" data-interval="1000">
@@ -102,7 +102,7 @@
 							<h6 class="mt-2">Réparation</h6>
 						</div>
 						<div class="my-5">
-							<h2 class="">Liste des réparations</h2>
+							<h4 class="pb-2">Liste des réparations</h4>
 							<ul class="mx-3">
 								{% for service in services %}
 									{% if service.id != 1 %}
@@ -127,7 +127,7 @@
 							<h6 class="align-center mt-2 display-7">Entretien courant</h6>
 						</div>
 						<div class="my-5">
-							<h2 class="">Les entretiens courants</h2>
+							<h4 class="pb-2">Les entretiens courants</h4>
 							<ul>
 								{% for service in services %}
 									{% for evocation in service.evocations %}
@@ -146,7 +146,7 @@
 							<h6 class="align-center mt-2 display-7">Vente véhicules</h6>
 						</div>
 						<div class="my-5">
-							<h2 class="">Activités des ventes</h2>
+							<h4 class="pb-2">Activités des ventes</h4>
 							<ul>
 								<li class="small-text text-start ps-2">Véhicules toutes marques</li>
 								<li class="small-text text-start ps-2">Neufs et occasions</li>
@@ -229,17 +229,17 @@
 			<div class="container-fluid">
 				<div class="row justify-content-center">
 					<div class="title col-12 col-md-9 mt-5">
-						<h3 class="h4-title align-center mb-1 display-4 text-center">
+						<h6 class="h4-title align-center mb-1 display-4 text-center">
 							<strong>Commentaires et notes des clients</strong>
-						</h3>
+						</h6>
 						<div class="container my-5">
 							<div
-								class="row">
+								class="row">	
 								<!-- Colonnes des avis des clients -->
 								<div class="col-md-7">
 									<div class="card">
 										<div class="rounded-2 characteristic-box pt-4 pb-4">
-											<h1 class="text-center bg-light">Avis des clients</h1>
+											<h2 class="text-center bg-light">Avis des clients</h2>
 											<div
 												class="form-scroll border mt-3">
 												<!-- Affichage des témoignages -->
@@ -270,7 +270,7 @@
 									<div class="" style="width:24rem">
 										<div class="characteristic-box">
 											<div class="pt-3 pb-4">
-												<h1 class="text-center bg-light">Laissez votre témoignage</h1>
+												<h2 class="text-center bg-light">Laissez votre témoignage</h2>
 											</div>
 											<form method="POST" action="{{ path('traitement_temoignage') }}" class="border border-dark rounded-2 p-3">
 												<div class="mb-3">
