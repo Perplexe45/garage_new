@@ -1,6 +1,6 @@
 // En lançant VScode une première fois, si le fichier .env est bien renseigné, la base de donnée
 // nommée 'garage' sera crée par Doctrine. Ensuite il faudra importer le fichier de sauvegarde
-//'garage.sql' qui a été sauvegardé par le programme de mysq: 'mysqldump' et qui est présent à la
+//'garage.sql' qui a été sauvegardé par le programme de mysql: 'mysqldump' et qui est présent à la
 //racine du dossier de ce projet
 
 // Pour la restauration de la base de donnée mysql : en super utilisateur et dans un terminal
