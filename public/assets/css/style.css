@@ -183,6 +183,16 @@ header {
   padding: 15px;
 }
 
+.cadreCaracteristique {
+  margin-top: 2%;
+  margin-bottom: 2%;
+  margin-right: 5%;
+  border-radius: 5px;
+  border: 1px solid #000;
+  background-color: #EAE0D5;
+  padding: 15px;
+}
+
 .cursor-pointer {
   cursor:pointer;
 }
