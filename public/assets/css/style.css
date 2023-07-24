@@ -232,6 +232,8 @@ header {
 
 .yellowStars, select.yellowStars  {
   font-size: 24px; 
+  height: 45px;
+  align-items : center; 
   color: rgb(224, 177, 7); /* Couleur jaune des étoiles */
 }
 
@@ -374,6 +376,30 @@ footer {
   
 }
 
+/* Pour les écrans de taille plus petite que 768px (tablette et en dessous) */
+@media (max-width: 1200px) {
+  .yellowStars {
+    font-size: 16px; 
+    max-width: 12rem; 
+  }
+}
+
+@media (max-width: 992px) {
+  .yellowStars {
+    font-size: 16px; 
+    max-width: 8rem; 
+  }
+}
+
+@media (max-width: 767.98px) {
+  .yellowStars {
+    font-size: 16px; 
+    max-width: 20rem; 
+  }
+}
+
+
+
 
   @media (min-width: 768px) {  /* Tablettes et écrans plus grands */
     .col-md-2 {
@@ -406,3 +432,5 @@ footer {
       width: 30%;
     }
   }
+
+  

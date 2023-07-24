@@ -224,95 +224,95 @@
 		<hr class="custom-line"><hr class="custom-line">
 	{% endblock %}
 
-	{% block avisClients %}
-		<section data-bs-version="5.1" class="my-3">
-			<div class="container-fluid">
-				<div class="row justify-content-center">
-					<div class="title col-12 col-md-9 mt-5">
-						<h6 class="h4-title align-center mb-1 display-4 text-center">
-							<strong>Commentaires et notes des clients</strong>
-						</h6>
-						<div class="container my-5">
-							<div
-								class="row">	
-								<!-- Colonnes des avis des clients -->
-								<div class="col-md-7">
-									<div class="card">
-										<div class="rounded-2 characteristic-box pt-4 pb-4">
-											<h2 class="text-center bg-light">Avis des clients</h2>
-											<div
-												class="form-scroll border mt-3">
-												<!-- Affichage des témoignages -->
-												{% for temoignage in temoignages %}
-													{% if temoignage.acceptation == 1 %}
-															<div class="card my-3 border border-dark">
-																	<div class="m-3">
-																			<h5 class="card-title">{{ temoignage.id }}- {{ temoignage.nom }}</h5>
-																			<p class="">{{ temoignage.commentaire }}</p>
-																			<p class="card-text">
-																					{% set stars = '' %}
-																						{% for _ in 1..temoignage.note %}
-																								{% set stars = stars ~ '<span class="yellowStars">★</span>' %}
-																						{% endfor %}
-																					{{ stars|raw }}
-																			</p>
-																	</div>
-															</div>
-													{% endif %}
-											{% endfor %}
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-1"></div>
-								<!-- Colonne du formulaire -->
-								<div class="col-md-4">
-									<div class="" style="width:24rem">
-										<div class="characteristic-box">
-											<div class="pt-3 pb-4">
-												<h2 class="text-center bg-light">Laissez votre témoignage</h2>
-											</div>
-											<form method="POST" action="{{ path('traitement_temoignage') }}" class="border border-dark rounded-2 p-3">
-												<div class="mb-3">
-													<label for="nom" class="form-label">Nom :</label>
-													<input type="text" class="form-control border border-dark" id="nom" name="nom" required>
-												</div>
-												<div class="mb-3">
-													<label for="commentaire" class="form-label">Commentaire :</label>
-													<textarea class="form-control border border-dark" id="commentaire" name="commentaire" required style="height: 142px;"></textarea>
-												</div>
-												<div class="mb-3">
-													<label for="note" class="form-label">Note :</label>
-													<div class="col-md-6">
-														<select class="yellowStars form-select border border-dark" id="note" name="note" required>
-															<option class="yellowStars" value="1">★☆☆☆☆</option>
-															<option class="yellowStars" value="2">★★☆☆☆</option>
-															<option class="yellowStars" value="3">★★★☆☆</option>
-															<option class="yellowStars" value="4">★★★★☆</option>
-															<option class="yellowStars" value="5">★★★★★</option>
-														</select>
-													</div>
-												</div>
-												<button type="submit" class="btn btn-dark">Soumettre</button>
-											</form>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<hr class="custom-line">
-		<hr class="custom-line">
-	{% endblock %}
+{% block avisClients %}
+    <section data-bs-version="5.1" class="my-3">
+        <div class="container-fluid">
+            <div class="row justify-content-center">
+                <div class="title col-12 col-md-11 mt-5">
+                    <h6 class="h4-title align-center mb-1 display-4 text-center">
+                        <strong>Commentaires et notes des clients</strong>
+                    </h6>
+                    <div class="container my-5">
+                        <div class="row">
+                            <!-- Colonnes des avis des clients -->
+                            <div class="col-12 col-sm-11 col-md-7 col-lg-7 mb-4 mx-auto"> 
+                                <div class="card">
+                                    <div class="rounded-2 characteristic-box pt-4 pb-4">
+                                        <h2 class="text-center bg-light">Avis des clients</h2>
+                                        <div class="form-scroll border mt-3">
+                                            <!-- Affichage des témoignages -->
+                                            {% for temoignage in temoignages %}
+                                                {% if temoignage.acceptation == 1 %}
+                                                    <div class="card my-3 border border-dark">
+                                                        <div class="m-3">
+                                                            <h5 class="card-title">{{ temoignage.id }}- {{ temoignage.nom }}</h5>
+                                                            <p class="">{{ temoignage.commentaire }}</p>
+                                                            <p class="card-text">
+                                                                {% set stars = '' %}
+                                                                {% for _ in 1..temoignage.note %}
+                                                                    {% set stars = stars ~ '<span class="yellowStars">★</span>' %}
+                                                                {% endfor %}
+                                                                {{ stars|raw }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
+													<div class="col-md-1 col-lg-1"></div>
+
+                            <!-- Colonne du formulaire -->
+                            <div class="col-12 col-sm-11 col-md-4 col-lg-4 mx-auto"> 
+                              <div class="characteristic-box">
+																	<div class="pt-3 pb-4">
+																			<h2 class="text-center bg-light">Laissez votre témoignage</h2>
+																	</div>
+																	<form method="POST" action="{{ path('traitement_temoignage') }}" class="border border-dark rounded-2 p-3">
+																			<div class="mb-3">
+																					<label for="nom" class="form-label">Nom :</label>
+																					<input type="text" class="form-control border border-dark" id="nom" name="nom" required>
+																			</div>
+																			<div class="mb-3">
+																					<label for="commentaire" class="form-label">Commentaire :</label>
+																					<textarea class="form-control border border-dark" id="commentaire" name="commentaire" required style="height: 142px;"></textarea>
+																			</div>
+																			<div class="mb-3">
+																				<label for="note" class="form-label">Note :</label>
+																				<div class="">
+																						<select class="yellowStars form-select border border-dark" id="note" name="note" required>
+																								<option class="yellowStars" value="1">★☆☆☆☆</option>
+																								<option class="yellowStars" value="2">★★☆☆☆</option>
+																								<option class="yellowStars" value="3">★★★☆☆</option>
+																								<option class="yellowStars" value="4">★★★★☆</option>
+																								<option class="yellowStars" value="5">★★★★★</option>
+																						</select>
+																				</div>
+																			</div>
+
+																			<button type="submit" class="btn btn-dark">Soumettre</button>
+																	</form>
+															</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <hr class="custom-line">
+    <hr class="custom-line">
+{% endblock %}
+
+	
 	{% block formulaireClients %}
-		<section data-bs-version="5.1" class="p-5">
+		<section data-bs-version="5.1" class="py-4">
 			<div class="container">
 				<div class="row justify-content-center mt-4 ">
-					<div class="col-lg-7 mx-auto">
+					<div class="col-md-9 mx-auto">
 						<div class="card" id="formContact">
 							<div class="card-body rounded-2 card-color">
 								<div class="mt-4 pt-2">
@@ -331,20 +331,20 @@
 											(Un membre de notre équipe vous recontactera )
 										</h6>
 
-										<div class="col-lg-7 col-md-7 col-sm-7 mx-auto form-group mb-3" data-for="name">
+										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="name">
 											<input type="text" name="name" placeholder="Nom" data-form-field="name" class="form-control" value="" id="name-form7-o" required>
 										</div>
-										<div class="col-lg-7 col-md-7 col-sm-7 mx-auto form-group mb-3" data-for="name">
+										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="name">
 											<input type="text" name="prenom" placeholder="Prénom" data-form-field="prenom" class="form-control" value="" id="prenom-form7-o" required>
 										</div>
 
-										<div class="col-lg-7 col-md-7 col-sm-7 mx-auto form-group mb-3" data-for="email">
+										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="email">
 											<input type="email" name="email" placeholder="Adresse Email" data-form-field="email" class="form-control" value="" id="email-form7-o" required>
 										</div>
-										<div class="col-lg-7 col-md-7 col-sm-7 mx-auto form-group mb-3" data-for="phone">
+										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="phone">
 											<input type="tel" name="phone" placeholder="Téléphone" data-form-field="phone" class="form-control" value="" id="phone-form7-o" required>
 										</div>
-										<div class="col-lg-7 col-md-7 col-sm-7 mx-auto form-group mb-3" data-for="phone">
+										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="phone">
 											<input type="message" name="message" placeholder="Message" data-form-field="messahge" class="form-control" value="" id="message-form7-o" required style="height: 100px" ;>
 										</div>
 										<div class="col-lg-7 mx-auto mbr-section-btn align-center">
@@ -353,7 +353,7 @@
 										<div id="form-message" class="alert alert-success col-12" style="display: none;">Merci de votre contatc. On vous rapelle.</div>
 
 									</div>
-								</form>
+								</form >
 							</div>
 						</div>
 
