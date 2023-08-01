@@ -16,6 +16,7 @@ class OptionsCrudController extends AbstractCrudController
     public function configureCrud (Crud $crud) : Crud
     {
         return $crud
+            ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Liste des options')
             ->setEntityLabelInSingular('une option')
             ->setPageTitle('index', 'Liste des options de voitures')

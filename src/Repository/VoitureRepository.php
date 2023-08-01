@@ -4,7 +4,6 @@ namespace App\Repository;
 
 use App\Entity\Voiture;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query\Expr\OrderBy;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -69,16 +68,7 @@ class VoitureRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-    /* $test = $queryBuilder-> getQuery() ->getResult();
-
-    var_dump($kmValue);
-    var_dump($prixValue);
-    var_dump($anneeValue);
-
-    dd($test); */
-
-
+    
 //    /**
 //     * @return Voiture[] Returns an array of Voiture objects
 //     */

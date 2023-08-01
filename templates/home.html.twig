@@ -6,6 +6,12 @@
 
 {% block presentation %}
 	<header>
+		{# Bannière pour : site en formation #}
+		<p style="font-size:1.4rem; text-align: center; color: rgb(247, 247, 241); font-weight: 700; padding-top:1rem;" class="pb-4 bg-danger ">
+          Ce site a été uniquement conçu pour une évaluation avec un centre de formation. <br>
+          Il n'est donc pas à prendre au sérieux.
+    </p>
+
 		<div class="">
 			<h1 class="display-4 bg-light"><strong>Bienvenue cher client</strong></h1>
 		</div>
@@ -40,8 +46,8 @@
 	</section>
 {% endblock %}
 
-
 {% block caroussel %}
+
 
 	<!-- Caroussel -->
 	<div class="container bg-light">
@@ -224,7 +230,7 @@
 		<hr class="custom-line"><hr class="custom-line">
 	{% endblock %}
 
-{% block avisClients %}
+	{% block avisClients %}
     <section data-bs-version="5.1" class="my-3">
         <div class="container-fluid">
             <div class="row justify-content-center">
@@ -266,12 +272,13 @@
 													<div class="col-md-1 col-lg-1"></div>
 
                             <!-- Colonne du formulaire -->
-                            <div class="col-12 col-sm-11 col-md-4 col-lg-4 mx-auto"> 
+                            <div id="formAnchor" class="col-12 col-sm-11 col-md-4 col-lg-4 mx-auto"> 
                               <div class="characteristic-box">
 																	<div class="pt-3 pb-4">
 																			<h2 class="text-center bg-light">Laissez votre témoignage</h2>
 																	</div>
-																	<form method="POST" action="{{ path('traitement_temoignage') }}" class="border border-dark rounded-2 p-3">
+
+																	<form method="POST" action="{{ path('traitement_temoignage') }}" id="temoignage-form" class="border border-dark rounded-2 p-3">
 																			<div class="mb-3">
 																					<label for="nom" class="form-label">Nom :</label>
 																					<input type="text" class="form-control border border-dark" id="nom" name="nom" required>
@@ -295,6 +302,35 @@
 
 																			<button type="submit" class="btn btn-dark">Soumettre</button>
 																	</form>
+
+																	{% for message in app.session.flashBag.get('notice') %}
+																		<div class ="alert alert-info mt-3 bg-light pt-1 pb-3" id="messageRemerciement"><p  class="ps-3 pe-3 text-center"></p> 
+																			<div class="fs-5 text-center">{{message}}</div>
+																		</div>
+																		<script>
+																			// Écouter l'événement de soumission du formulaire
+																			const formulaire = document.getElementById('temoignage-form');
+																				formulaire.addEventListener('submit', (event) => {
+																						// On affiche le message de remerciement
+																						const messageRemerciement = document.getElementById('messageRemerciement');
+																						messageRemerciement.style.display = 'block';
+																				// On masque le message après 5 secondes
+																					setTimeout(() => {
+																							messageRemerciement.style.display = 'none';
+																					}, 5000);
+																					// Réinitialiser le formulaire 
+																					formulaire.reset();
+																				});	
+																				//On se repositionne au formulaire
+																				document.addEventListener('DOMContentLoaded', () => {
+																				const formAnchor = document.getElementById('formAnchor');
+																				if (formAnchor) {
+																					formAnchor.scrollIntoView({ behavior: 'auto' });
+																					}
+																				});
+
+																		</script>
+																	{% endfor %}													
 															</div>
                             </div>
                         </div>
@@ -303,7 +339,8 @@
             </div>
         </div>
     </section>
-    <hr class="custom-line">
+	
+		<hr class="custom-line">
     <hr class="custom-line">
 {% endblock %}
 
@@ -313,47 +350,72 @@
 			<div class="container">
 				<div class="row justify-content-center mt-4 ">
 					<div class="col-md-8 mx-auto">
-						<div class="card" id="formContact">
+						<div class="card" id="formAnchorContact">
 							<div class="card-body rounded-2 card-color">
 								<div class="mt-4 pt-2">
 									<h3 class="text-center pr-5 bg-light">
 										<strong>Contactez-nous</strong>
 									</h3>
 								</div>
-								<form method="POST" action="{{ path('contactClients') }}" class="mx-auto" data-form-title="Form Name">
+								<form method="POST" action="{{ path('contactClients') }}" id="contact-form" class="mx-auto" data-form-title="Form Name">
 									<input type="hidden" name="email" data-form-email="true" value="">
-									<div class="row">
-										<div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Merci de nous avoir contacté</div>
-										<div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12"></div>
-									</div>
 									<div class="row">
 										<h6 style="color:#EAE0D5" class=" mb-4 text-center">
 											(Un membre de notre équipe vous recontactera )
 										</h6>
-
 										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="name">
-											<input type="text" name="name" placeholder="Nom" data-form-field="name" class="form-control" value="" id="name-form7-o" required>
+											<input type="text" name="name" placeholder="Nom" data-form-field="name" class="form-control" value="" required>
 										</div>
 										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="name">
-											<input type="text" name="prenom" placeholder="Prénom" data-form-field="prenom" class="form-control" value="" id="prenom-form7-o" required>
+											<input type="text" name="prenom" placeholder="Prénom" data-form-field="prenom" class="form-control" value="" required>
 										</div>
 
 										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="email">
-											<input type="email" name="email" placeholder="Adresse Email" data-form-field="email" class="form-control" value="" id="email-form7-o" required>
+											<input type="email" name="email" placeholder="Adresse Email" data-form-field="email" class="form-control" value="" required>
 										</div>
 										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="phone">
-											<input type="tel" name="phone" placeholder="Téléphone" data-form-field="phone" class="form-control" value="" id="phone-form7-o" required>
+											<input type="tel" name="phone" placeholder="Téléphone" data-form-field="phone" class="form-control" value="" required>
 										</div>
 										<div class="col-lg-7 col-md-8 col-sm-11 col-12 mx-auto form-group mb-3" data-for="phone">
-											<input type="message" name="message" placeholder="Message" data-form-field="messahge" class="form-control" value="" id="message-form7-o" required style="height: 100px" ;>
+											<input type="message" name="message" placeholder="Message" data-form-field="message" class="form-control" value="" required style="height: 100px" ;>
 										</div>
 										<div class="col-lg-7 mx-auto mbr-section-btn align-center">
 											<button type="submit" class="btn btn-dark display-4">Envoyer</button>
 										</div>
-										<div id="form-message" class="alert alert-success col-12" style="display: none;">Merci de votre contatc. On vous rapelle.</div>
-
 									</div>
 								</form >
+
+								{# Gestion des messages du formulaire de contact #}
+								{% for message in app.session.flashBag.get('noticeContact') %}
+									<div class ="col-lg-7 mx-auto alert alert-info mt-3 bg-light pt-1 pb-3" id="msgRemerciementContact"><p  class="ps-3 pe-3 text-center"></p> 
+										<div class="fs-5 text-center">
+											{{message}}
+										</div>
+									</div>
+									<script>
+										// Écouter l'événement de soumission du formulaire
+										const formulaireContact = document.getElementById('contact-form');
+										formulaireContact.addEventListener('submit', (event) => {
+											// On affiche le message de remerciement
+											const msgRemerciementContact = document.getElementById('msgRemerciementContact');
+											msgRemerciementContact.style.display = 'block';
+										// On masque le message après 5 secondes
+											setTimeout(() => {
+													msgRemerciementContact.style.display = 'none';
+													// Réinitialiser le formulaire après quelques secondes
+													formulaireContact.reset();
+											}, 5000);
+										});	
+										//On se repositionne au formulaire
+										document.addEventListener('DOMContentLoaded', () => {
+										const formAnchor = document.getElementById('formAnchorContact');
+										if (formAnchor) {
+											formAnchor.scrollIntoView({ behavior: 'auto' });
+											}
+										});
+									</script>
+								{% endfor %}	
+
 							</div>
 						</div>
 
@@ -363,11 +425,4 @@
 			</div>
 		</div>
 	</div>
-
-	<script>
-		document.querySelector('form').addEventListener('submit', function () {
-document.getElementById('form-message').style.display = 'block';
-});
-	</script>
-
 </section>{% endblock %}

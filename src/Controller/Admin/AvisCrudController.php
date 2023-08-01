@@ -21,11 +21,13 @@ class AvisCrudController extends AbstractCrudController
     public function configureCrud (Crud $crud) : Crud
     {
         return $crud
+            ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Liste des avis du garage Perrot')
             ->setEntityLabelInSingular('1 avis')
             ->setPageTitle('index', 'Liste des avis du garage')
             ->setPaginatorPageSize(10)
             ->showEntityActionsInlined();
+            
     }
 
     
@@ -40,5 +42,4 @@ class AvisCrudController extends AbstractCrudController
                 -> setRequired(false),
             ];
         }
-   
 }

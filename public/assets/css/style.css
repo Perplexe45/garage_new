@@ -301,6 +301,10 @@ p {
   line-height: 1.5;
 }
 
+.placeHolderMsg::placeholder{
+  padding-top: 8px !important;
+}
+
 hr {
   border: none;
   border-top: 1px solid #eee;

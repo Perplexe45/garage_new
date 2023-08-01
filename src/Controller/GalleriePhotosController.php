@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-
 use App\Form\SearchType;
 use App\Repository\EquipementRepository;
 use App\Repository\EquipementVoitureRepository;
@@ -74,14 +73,12 @@ class GalleriePhotosController extends AbstractController
             $prixValue = $request->request->get('prix');
             $anneeValue = $request->request->get('annee');
     
-            // Effectuez les opérations nécessaires en fonction des valeurs des sélections
-            // Par exemple, filtrez les données en fonction des sélections
+            // filtre les données en fonction des sélections
             $filteredVoitures = $voitureRepository->findByCriteria($kmValue, $prixValue, $anneeValue);
     
-            // Retournez une réponse JSON avec les données mises à jour
+            // Retourne une réponse JSON avec les données mises à jour
             return $this->json([
                 'voitures' => $filteredVoitures,
-                // Autres données nécessaires à mettre à jour dans votre page
             ]);
         }
     
@@ -97,14 +94,3 @@ class GalleriePhotosController extends AbstractController
         ]);
     }
 }
-
-/* if ($request->request->has('selectKm')) { //BTN submit KM
-    $kmValue = $form->get('km')->getData();
-    echo "La valeur sélectionnée pour les kilomètres est : " . $kmValue;         
-} elseif ($request->request->has('selectPrix')) { //BTN submit prix
-    $kmValue = $form->get('prix')->getData();
-    echo "La valeur sélectionnée pour le prix est : " . $kmValue;
-} elseif ($request->request->has('selectAnnee')) { //BTN submit Année
-    $kmValue = $form->get('annee')->getData();
-    echo "La valeur sélectionnée pour l'année est : " . $kmValue;
-} */

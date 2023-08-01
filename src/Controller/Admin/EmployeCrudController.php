@@ -26,6 +26,7 @@ class EmployeCrudController extends AbstractCrudController
     {
 
         return $crud
+            ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Les employés du garage')
             ->setEntityLabelInSingular('un employé')
             ->setPageTitle('index', 'Garage Parrot - Administration des employés')

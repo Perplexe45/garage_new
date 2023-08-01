@@ -15,6 +15,7 @@ class ModeleCrudController extends AbstractCrudController
     public function configureCrud (Crud $crud) : Crud
     {
             return $crud
+            ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Les modèles de voiture')
             ->setEntityLabelInSingular('un modèle')
             ->setPageTitle('index', 'Liste des modèles de voiture')

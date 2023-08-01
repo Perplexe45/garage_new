@@ -18,6 +18,7 @@ class GallerieImageCrudController extends AbstractCrudController
     public function configureCrud (Crud $crud) : Crud
     {
         return $crud
+            ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('une gallerie')
             ->setEntityLabelInSingular('une gallerie de photos')
             ->setPageTitle('index', 'Liste des galleries de photos pour vente de véhicules')

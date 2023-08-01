@@ -12,6 +12,7 @@ class HoraireCrudController extends AbstractCrudController
     public function configureCrud (Crud $crud) : Crud
     {
         return $crud
+            ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Les horaires du garage')
             ->setEntityLabelInSingular('un horaire')
             ->setPageTitle('index', 'Horaires du garage')

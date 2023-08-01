@@ -19,6 +19,7 @@ class EvocationCrudController extends AbstractCrudController
     public function configureCrud (Crud $crud) : Crud
     {
         return $crud
+        ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Les types de service')
             ->setEntityLabelInSingular('une prestation')
             ->setPageTitle('index', 'Prestations de service du garage')

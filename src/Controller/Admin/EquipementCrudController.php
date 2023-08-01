@@ -15,7 +15,8 @@ class EquipementCrudController extends AbstractCrudController
 
     public function configureCrud (Crud $crud) : Crud
     {
-        return $crud
+        return $crud 
+            ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Les équipement')
             ->setEntityLabelInSingular('un équipement')
             ->setPageTitle('index', 'Liste des équipements de voiture')

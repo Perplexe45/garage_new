@@ -71,13 +71,10 @@
                                             <img class="zoom-image ps-2 w-30 img-fluid" src="/uploads/{{ gallerieImage.img5 }}" alt="image de la voiture">
                                             <img class="zoom-image ps-2 w-30 img-fluid" src="/uploads/{{ gallerieImage.img6 }}" alt="image de la voiture">
                                         </div>
-                                        
-                                            <div class="pt-2 pb-2 ms-4 cadreCaracteristique">
-                                                <h6 class="text-center" ><span class="mx-auto">{{ voiture.caracteristique }} </span></h6>
-                                            </div>
-                                        
-                                            
-
+                                    
+                                        <div class="pt-2 pb-2 ms-4 cadreCaracteristique">
+                                            <h6 class="text-center" ><span class="mx-auto">{{ voiture.caracteristique }} </span></h6>
+                                        </div>
                                     </div>
                                 {% endif %}
                             {% endfor %}
@@ -138,44 +135,41 @@
 
    
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fonction de mise à jour des données en fonction des sélections
+            function updateData() {
+            // Récupère les valeurs des sélections
+            var kmValue = document.getElementById('km-select').value;
+            var prixValue = document.getElementById('prix-select').value;
+            var anneeValue = document.getElementById('annee-select').value;
 
-      
-  document.addEventListener('DOMContentLoaded', function() {
-    // Fonction de mise à jour des données en fonction des sélections
-    function updateData() {
-      // Récupère les valeurs des sélections
-      var kmValue = document.getElementById('km-select').value;
-      var prixValue = document.getElementById('prix-select').value;
-      var anneeValue = document.getElementById('annee-select').value;
+            // Fais la requête AJAX avec Axios
+            axios.post('{{ path('app_gallerie_photos') }}', {
+                km: kmValue,
+                prix: prixValue,
+                annee: anneeValue
+            })
+                .then(function(response) {
+                // Réponse JSON 
+                console.log(response.data);
+                })
+                .catch(function(error) {
+                // Erreurs de la requête
+                console.error(error);
+                });
+            }
 
-      // Fais la requête AJAX avec Axios
-      axios.post('{{ path('app_gallerie_photos') }}', {
-        km: kmValue,
-        prix: prixValue,
-        annee: anneeValue
-      })
-        .then(function(response) {
-          // Réponse JSON 
-          console.log(response.data);
-        })
-        .catch(function(error) {
-          // Erreurs de la requête
-          console.error(error);
+            // Écoute les changements des boutons "Select" et déclenche la mise à jour des données
+            document.getElementById('km-select').addEventListener('change', updateData);
+            document.getElementById('prix-select').addEventListener('change', updateData);
+            document.getElementById('annee-select').addEventListener('change', updateData);
+        
+
+            // Écoute les changements des boutons "Select" et déclenche la mise à jour des données
+            document.getElementById('km-select').addEventListener('change', updateData);
+            document.getElementById('prix-select').addEventListener('change', updateData);
+            document.getElementById('annee-select').addEventListener('change', updateData);
         });
-    }
-
-    // Écoute les changements des boutons "Select" et déclenche la mise à jour des données
-    document.getElementById('km-select').addEventListener('change', updateData);
-    document.getElementById('prix-select').addEventListener('change', updateData);
-    document.getElementById('annee-select').addEventListener('change', updateData);
-  
-
-    // Écoute les changements des boutons "Select" et déclenche la mise à jour des données
-    document.getElementById('km-select').addEventListener('change', updateData);
-    document.getElementById('prix-select').addEventListener('change', updateData);
-    document.getElementById('annee-select').addEventListener('change', updateData);
-  });
-
     </script>
 
 
@@ -185,18 +179,15 @@
     <section data-bs-version="5.1" class="">
       <div class="container bg-light py-3">
         <div class="row justify-content-center ">
-            <div class="col-lg-7 mx-auto">
+            <div class="col-lg-7 mx-auto id="formAnchor"">
               <div class="card">
                 <div class="card-body rounded-2 card-color">
                   <div class="mt-4 pt-2">
                     <h2 class="align-center mb-1 text-center bg-light"><strong>Contactez-nous</strong></h2>
                   </div>
-                    <form method="POST" action="{{ path('contactClients') }}" class=" mx-auto" data-form-title="Form Name">
+                    <form method="POST" action="{{ path('contactClients') }}" id="wantACar-form" class=" mx-auto">
                       <input type="hidden" name="email" data-form-email="true" value="">
-                      <div class="row">
-                          <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Merci de nous avoir contacté</div>
-                          <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12"></div>
-                      </div>
+
                       <div class="row">
                         <div class="col-lg-7 col-md-7 col-sm-7 mx-auto my-2">
                             <h6 class="bg-light align-left mb-4 text-center">
@@ -206,7 +197,7 @@
 
                         <div class="col-lg-7 col-md-7 col-sm-7 mx-auto form-group mb-3" data-for="select">
                             <div class="input-group">
-                                <select name="selectId" data-form-field="select" class="form-control" id="select-form7-o">
+                                <select name="selectId" data-form-field="select" class="form-control">
                                 <option value="">Référence de l'annonce &#9660;</option>
                                     {% for voiture in voitures %}
                                         {% if not voiture.vendu %}
@@ -223,7 +214,6 @@
                         <div class="col-lg-7 col-md-7 col-sm-7 mx-auto form-group mb-3" data-for="name">
                             <input type="text" name="prenom" placeholder="Prénom" data-form-field="prenom" class="form-control" value="" required>
                         </div>
-
                         <div class="col-lg-7 col-md-7 col-sm-7 mx-auto form-group mb-3" data-for="email">
                             <input type="email" name="email" placeholder="Adresse Email" data-form-field="email" class="form-control" value="" required>
                         </div>
@@ -239,7 +229,35 @@
                         </div>
                       </div>
                 </form>
-            </div>
+
+                {% for message in app.session.flashBag.get('noticeContact') %}
+                    <div class ="alert alert-info mt-3 bg-light pt-1 pb-3" id="messageRemerciement"><p  class="ps-3 pe-3 text-center"></p> 
+                    <div class="fs-5 text-center">{{message}}</div>
+                    </div>
+                    <script>
+                    // Écouter l'événement de soumission du formulaire
+                    const formulaire = document.getElementById('wantACar-form');
+                        formulaire.addEventListener('submit', (event) => {
+                                // On affiche le message de remerciement
+                                const messageRemerciement = document.getElementById('messageRemerciement');
+                                messageRemerciement.style.display = 'block';
+                        // On masque le message après 5 secondes
+                            setTimeout(() => {
+                                    messageRemerciement.style.display = 'none';
+                            }, 5000);
+                            // Réinitialiser le formulaire 
+                            formulaire.reset();
+                        });	
+                        //On se repositionne au formulaire
+                        document.addEventListener('DOMContentLoaded', () => {
+                        const formAnchor = document.getElementById('formAnchor');
+                        if (formAnchor) {
+                            formAnchor.scrollIntoView({ behavior: 'auto' });
+                            }
+                        });
+                    </script>
+                    {% endfor %}		
+                    </div>
               </div>
               
               

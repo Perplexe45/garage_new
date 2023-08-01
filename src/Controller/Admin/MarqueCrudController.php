@@ -12,6 +12,7 @@ class MarqueCrudController extends AbstractCrudController
     public function configureCrud (Crud $crud) : Crud
     {
             return $crud
+            ->setDefaultSort(['id' => 'DESC'])    
             ->setEntityLabelInPlural('Les marques de voiture')
             ->setEntityLabelInSingular('une marque')
             ->setPageTitle('index', 'Liste des marques de voiture')

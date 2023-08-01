@@ -23,6 +23,7 @@ class ContactCrudController extends AbstractCrudController
     public function configureCrud (Crud $crud) : Crud
     {
             return $crud
+            ->setDefaultSort(['id' => 'DESC'])
             ->setEntityLabelInPlural('Contacts')
             ->setEntityLabelInSingular('contact')
             ->setPageTitle('index', 'Liste des contacts du garage')
